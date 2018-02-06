@@ -1,17 +1,59 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar no-padding>
+    <ion-grid no-padding>
+      <ion-row align-items-center style="background-color: red;">
+        <ion-col col-10>
+          <ion-searchbar placeholder="年货超级秒杀日，好货低至1折"></ion-searchbar>
+        </ion-col>
+        <ion-col col-2 text-center>
+          <button ion-button clear style="color:#fff;" (click)="onLogin()">{{username}}</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+
+  <ion-slides pager style="height:auto;">
+    <ion-slide *ngFor="let slide of slideImgs">
+      <img [src]="slide.src">
+    </ion-slide>
+  </ion-slides>
+
+  <div id="appcenter">
+    <a href="#" *ngFor="let item of appcenter">
+      <img [src]="item.imgSrc">
+      <span>{{item.text}}</span>
+    </a>
+  </div>
+
+  <div class="floor-container">
+    <ul id="seckillul">
+      <li class="seckill-item" *ngFor="let item of seckills">
+        <div class="seckill-item-img">
+          <img [src]="item.imgSrc">
+        </div>
+        <div class="seckill-item-price">
+          <span class="seckill-new-price">
+            <em>￥</em>{{item.newPrice}}
+          </span>
+          <span class="seckill-original-price">
+            <em>￥</em>{{item.originalPrice}}
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="brand">
+    <img src="https://m.360buyimg.com/mobilecms/jfs/t17314/267/236408143/290978/35d19e5c/5a659e30N95fd1ceb.gif" alt="">
+  </div>
+
+  <div class="floor" id="yearGoods">
+    <div class="floor-container" *ngFor="let item of yearGoods">
+      <img [src]="item.imgSrc">
+    </div>
+  </div>
+
 </ion-content>

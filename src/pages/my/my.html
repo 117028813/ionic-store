@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      我的
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="bg-color">
+  <!-- 
+    内容开始
+    用户信息
+  -->
+  <ion-list class="top-list marginBottom">
+    <button ion-item [navPush]="userInfoPage">
+      <ion-avatar item-left>
+        <img src="./assets/icon/user.jpg">
+      </ion-avatar>
+      <h2>devilx</h2>
+      <p>账号：18600001111</p>
+    </button>
+  </ion-list>
+
+  <!-- 待付款/全部订单 -->
+  <ion-grid class="marginBottom">
+    <ion-row>
+      <ion-col *ngFor="let settingTab of settingTabs" style="text-align:center;">
+        <ion-icon name="{{ settingTab.icon}}" color="bright"></ion-icon>
+        <p>{{ settingTab.title }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- 京卷/京豆 -->
+  <ion-grid class="marginBottom">
+    <ion-row>
+      <ion-col class="ionc-span" *ngFor="let jingCon of jingCons" style="text-align:center;">
+        <span>{{ jingCon.num }}{{ jingCon.info }}</span>
+        <p>{{ jingCon.txt }}</p>
+      </ion-col>
+      <ion-col style="text-align:center;">
+        <ion-icon name="card" color="bright"></ion-icon>
+        <p>全部资产</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- 我的关注 -->
+  <ion-grid class="marginBottom" fontColor="black">
+    <ion-row>
+      <ion-col *ngFor="let myFollow of myFollows" style="text-align:center;">
+        <span style="font-weight: bold;">{{ myFollow.num }}</span>
+        <p>{{ myFollow.txt }}</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ul class="jd-application">
+    <li *ngFor="let application of applications">
+      <ion-icon name="{{ application.icon }}" color="bright"></ion-icon>
+      <p>{{ application.txt }}</p>
+    </li>
+  </ul>
+
+  <ion-list class="top-list marginBottom">
+      <button ion-item [navPush]="userInfoPage">
+          客户服务
+      </button>
+  </ion-list>
+
+  <ion-list class="marginBottom recommend">
+      <ion-item>
+          <p>为您推荐</p>
+      </ion-item>
+  </ion-list>
+
+  <!-- 列表 -->
+  <div style="margin: 0 0 0 -3%;padding: 0 2%;overflow: hidden;">
+    <ion-card style="float: left;margin: 3% 0 0 3%;width: 47%;" *ngFor= "let card of cards">
+        <img src="{{ card.url }}"/>
+        <div class="card-title" text-center>{{ card.title }}</div>
+        <div class="card-subtitle" color= "red">￥{{ card.price }}</div>
+    </ion-card>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="this.count < 5">  
+    <ion-infinite-scroll-content  
+      loadingSpinner="bubbles"  
+      loadingText="Loading more data...">  
+    </ion-infinite-scroll-content>  
+  </ion-infinite-scroll>  
+
+</ion-content>

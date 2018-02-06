@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      发现
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button (click)="getPicture()">拍照</button>
+  <button ion-button (click)="scanBarcode()">扫码</button>
+  <img *ngIf="imgUrl" [src]="imgUrl" alt="">
+  <p *ngIf="scanUrl">{{scanUrl | json}}</p>
+</ion-content>

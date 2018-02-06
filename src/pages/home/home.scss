@@ -1,3 +1,89 @@
 page-home {
+  ion-searchbar .searchbar-input-container {
+    background-color: #fff;
+    border-radius: 2em;
+  }
+  #appcenter {
+    background-color: #f00;
+    overflow: hidden;
+    padding: 4px 0 18px;
+    img {
+      max-width: 45px;
+      max-height: 45px;
+    }
+    a {
+      width: 20%;
+      float: left;
+      padding-top: 6px;
+      padding-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+      color: #fff;
+      text-decoration: none;
+    }
+  }
 
+  ion-slides {
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .floor-container {
+    width: 100%;
+    overflow-x: scroll;
+    #seckillul {
+      overflow: hidden;
+      width: 1080px;
+      .seckill-item {
+        width: 108px;
+        float: left;
+        .seckill-item-img {
+          width: 100%;
+          min-height: 60px;
+          padding: 0 11px;
+          img {
+            width: 100%;
+            height: auto;
+          }
+        }
+        .seckill-item-price {
+          width: 100%;
+          padding: 0 11px;
+          text-align: center;
+          em {
+            font-style: normal;
+            font-size: 12px;
+          }
+          .seckill-new-price {
+            display: block;
+            color: #f23030;
+            font-size: 16px;
+          }
+          .seckill-original-price {
+            text-decoration: line-through;
+            color: #686868;
+          }
+        }
+      }
+    }
+  }
+  .brand {
+    line-height: 0;
+  }
+  #yearGoods {
+    overflow: hidden;
+    .floor-container {
+      float: left;
+      width: 50%;
+      line-height: 0;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+  }
 }

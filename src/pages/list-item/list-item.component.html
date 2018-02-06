@@ -1,0 +1,38 @@
+<div class="feed-item">
+  <div *ngIf="item.layout === 5; else elseBlock" class="feed-content">
+    <div class="photos">
+      <div class="main">
+        <img [src]="coverUrl" alt="">
+      </div>
+      <div class="aside">
+        <div class="aside-pic">
+          <img [src]="morePicUrl1">
+        </div>
+        <div class="aside-pic">
+          <img [src]="morePicUrl2">
+          <div class="more-pic">
+            <span class="count">{{item.target.photos_count - 3}}+</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3>{{item.title}}</h3>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="feed-content">
+      <img class="img" [src]="coverUrl" *ngIf="item.target.cover_url">
+      <h3>{{item.title}}</h3>
+      <p>{{item.target.desc}}</p>
+    </div>
+  </ng-template>
+
+  <div class="footer">
+    <div class="author">
+      by
+      <span class="name">{{item.target.author.name}}</span>
+    </div>
+    <span class="feed-label">{{item.source_cn}}</span>
+  </div>
+
+</div>

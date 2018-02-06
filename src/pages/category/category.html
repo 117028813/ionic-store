@@ -1,0 +1,7 @@
+<ion-content>
+  <app-list-item *ngFor="let item of items" [item]="item"></app-list-item>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

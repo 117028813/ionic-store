@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>购物车</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="goods-list">
+    <div class="goods" *ngFor="let item of goods">
+      <div class="top">
+        <div class="left">
+          <ion-checkbox [(ngModel)]="item.isChecked" color="danger" (click)="onChecked()"></ion-checkbox>
+        </div>
+        <div class="center">
+          <img [src]="item.img">
+        </div>
+        <div class="right">
+          <p class="name">{{item.name}}</p>
+          <p class="sku">{{item.sku}}</p>
+        </div>
+      </div>
+      <div class="middle">
+        <span class="amount">￥{{item.amount}}</span>
+        <div class="num-and-more" *ngIf="item.isChecked">
+          <a (click)="minusOne(item)">-</a><input type="text" maxlength="3" [(ngModel)]="item.num" (change)="onChangeNum(item)"><a (click)="addOne(item)">+</a>
+        </div>
+      </div>
+      <div class="bottom">
+        <a>移入关注</a>
+        <a (click)="deleteGoods(item)">删除</a>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar no-padding>
+    <div class="footer">
+      <div class="left">
+        <ion-checkbox color="danger" [(ngModel)]="isCheckedAll" (click)="onCheckedAll()"></ion-checkbox>
+        <span>全选</span>
+      </div>
+      <div class="center">
+        总计：<span>￥{{totalAmount | number: '1.2-2'}}</span>
+      </div>
+      <div class="right">
+        <a>去结算<span>({{totalCount | number: '1.0-0'}}件)</span></a>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>
