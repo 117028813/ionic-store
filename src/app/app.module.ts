@@ -19,6 +19,7 @@ import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 
 import { DataService } from "./data.service";
 import { LoginPage } from '../pages/login/login';
+import { GoodsDetailPage } from '../pages/goods-detail/goods-detail';
 
 @NgModule({
   declarations: [
@@ -30,13 +31,15 @@ import { LoginPage } from '../pages/login/login';
     MyPage,
     TabsPage,
     ListItemComponent,
-    LoginPage
+    LoginPage,
+    GoodsDetailPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
-      mode: 'ios'
+      mode: 'ios',
+      backButtonText: '返回'
     })
   ],
   bootstrap: [IonicApp],
@@ -49,7 +52,8 @@ import { LoginPage } from '../pages/login/login';
     MyPage,
     TabsPage,
     ListItemComponent,
-    LoginPage
+    LoginPage,
+    GoodsDetailPage
   ],
   providers: [
     StatusBar,

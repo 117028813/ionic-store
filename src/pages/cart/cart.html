@@ -7,27 +7,21 @@
 <ion-content>
   <div class="goods-list">
     <div class="goods" *ngFor="let item of goods">
-      <div class="top">
-        <div class="left">
-          <ion-checkbox [(ngModel)]="item.isChecked" color="danger" (click)="onChecked()"></ion-checkbox>
-        </div>
-        <div class="center">
-          <img [src]="item.img">
-        </div>
-        <div class="right">
-          <p class="name">{{item.name}}</p>
-          <p class="sku">{{item.sku}}</p>
-        </div>
+      <div class="left">
+        <ion-checkbox [(ngModel)]="item.isChecked" color="danger" (click)="onChecked()"></ion-checkbox>
       </div>
-      <div class="middle">
-        <span class="amount">￥{{item.amount}}</span>
-        <div class="num-and-more" *ngIf="item.isChecked">
-          <a (click)="minusOne(item)">-</a><input type="text" maxlength="3" [(ngModel)]="item.num" (change)="onChangeNum(item)"><a (click)="addOne(item)">+</a>
-        </div>
+      <div class="center">
+        <img [src]="item.img">
       </div>
-      <div class="bottom">
-        <a>移入关注</a>
-        <a (click)="deleteGoods(item)">删除</a>
+      <div class="right">
+        <p class="name">{{item.name}}</p>
+        <div class="middle">
+          <span class="amount">￥{{item.amount}}</span>
+          <div class="num-and-more" *ngIf="item.isChecked">
+            <a (click)="minusOne(item)">-</a><input type="text" maxlength="3" [(ngModel)]="item.count" (change)="onChangeNum(item)"><a (click)="addOne(item)">+</a>
+          </div>
+        </div>
+        <a class="del-btn" (click)="deleteGoods(item)">删除</a>
       </div>
     </div>
   </div>

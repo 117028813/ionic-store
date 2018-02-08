@@ -1,41 +1,30 @@
 import { Component } from "@angular/core";
+import { DataService } from "../../app/data.service";
+import { LoadingController, ToastController } from "ionic-angular";
 
 @Component({
   selector: 'page-cart',
   templateUrl: 'cart.html'
 })
 export class CartPage {
-  
-  goods = [
-    {
-      id: 1,
-      isChecked: true,
-      img: 'https://img10.360buyimg.com/n4/jfs/t3478/117/249797307/198145/db0e41ed/58059228N844ac314.jpg',
-      name: '雷柏（Rapoo） V500合金版 游戏机械键盘 游戏键盘 吃鸡键盘 电脑键盘 笔记本键盘 黑色 青轴',
-      sku: '0.8kg/件，黑色，V500合金版【87键无光】',
-      amount: 1,
-      num: 1
-    },
-    {
-      id: 2,
-      isChecked: true,
-      img: 'https://img10.360buyimg.com/n4/jfs/t10171/316/1303871608/174334/125238c6/59df0e3cN4ffab10d.jpg',
-      name: '达尔优（dareu）DK100 87键游戏机械键盘 黑色 青轴 绝地求生吃鸡键盘',
-      sku: '1.14kg/件，DK100 【87键无光青轴】',
-      amount: 2,
-      num: 1
-    }
-  ]
 
+  goods
   isCheckedAll
   totalAmount = 0
   totalCount = 0
 
-  ngOnInit() {
-    this.computeTotalAmount()
-
-    this.isCheckedAll = this.goods.every((val, index, arr) => {
-      return val.isChecked
+  ionViewWillEnter() {
+    let loading = this.loadingCtrl.create({
+      content: '请求数据中...'
+    })
+    loading.present()
+    this.dataService.cartGoods().subscribe(data => {
+      loading.dismiss()
+      this.goods = data
+      this.computeTotalAmount()
+      this.isCheckedAll = this.goods.every((val, index, arr) => {
+        return val.isChecked
+      })
     })
   }
 
@@ -45,11 +34,17 @@ export class CartPage {
     }
   }
 
+  constructor(
+    private dataService: DataService,
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
+  ) { }
+
   onChecked() {
     this.isCheckedAll = this.goods.every((val, index, arr) => {
       return val.isChecked
     })
-    
+
     this.computeTotalAmount()
   }
 
@@ -62,9 +57,9 @@ export class CartPage {
   }
 
   addOne(item) {
-    item.num++
-    if (item.num > 999) {
-      item.num = 999
+    item.count++
+    if (item.count > 999) {
+      item.count = 999
       return
     }
     this.totalCount++
@@ -72,9 +67,9 @@ export class CartPage {
   }
 
   minusOne(item) {
-    item.num--
-    if (item.num < 0) {
-      item.num = 0
+    item.count--
+    if (item.count < 0) {
+      item.count = 0
       return
     }
     this.totalCount--
@@ -92,6 +87,14 @@ export class CartPage {
       return val.id != item.id
     })
     this.computeTotalAmount()
+    this.dataService.deleteGoods(JSON.stringify(item)).subscribe(data => {
+      this.goods = data
+      this.toastCtrl.create({
+        message: '删除成功',
+        duration: 1000,
+        position: 'middle'
+      }).present()
+    })
   }
 
   computeTotalAmount() {
@@ -99,8 +102,8 @@ export class CartPage {
     this.totalAmount = 0
     this.goods.forEach((val, ind, arr) => {
       if (val.isChecked) {
-        this.totalCount += +val.num
-        this.totalAmount += val.amount * val.num
+        this.totalCount += +val.count
+        this.totalAmount += val.amount * val.count
       }
     })
   }

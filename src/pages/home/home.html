@@ -56,4 +56,16 @@
     </div>
   </div>
 
+  <ul class="goods-list">
+    <li class="goods-item" *ngFor="let item of goods" (click)="openGoodsDetail(item)">
+      <div class="left">
+        <img [src]="item.img">
+      </div>
+      <div class="right">
+        <p class="name">{{item.name}}</p>
+        <p class="amount">￥{{item.amount | number: '1.2-2'}}</p>
+      </div>
+    </li>
+  </ul>
+
 </ion-content>

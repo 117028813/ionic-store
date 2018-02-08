@@ -33,3 +33,5 @@ ionic cordova build android --prod
 打包成功后终端会提示打包后的apk路径，找到apk安装到手机就行了
 
 "我的"tab需要先登录，用户名是`admin`，密码是`123456`
+
+2018-2-8增加购物车功能（需要开启server）

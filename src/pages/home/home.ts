@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { DataService } from '../../app/data.service';
+import { GoodsDetailPage } from '../goods-detail/goods-detail';
 
 @Component({
   selector: 'page-home',
@@ -19,12 +20,26 @@ export class HomePage {
     }
   ]
 
-  appcenter = [
-
-  ]
-
+  appcenter = []
   seckills = []
   yearGoods = []
+
+  goods = [{
+    id: 1,
+    img: 'https://img10.360buyimg.com/n4/jfs/t3478/117/249797307/198145/db0e41ed/58059228N844ac314.jpg',
+    name: '雷柏（Rapoo） V500合金版 游戏机械键盘 游戏键盘 吃鸡键盘 电脑键盘 笔记本键盘 黑色 青轴',
+    amount: 89
+  }, {
+    id: 2,
+    img: 'https://img10.360buyimg.com/n4/jfs/t10171/316/1303871608/174334/125238c6/59df0e3cN4ffab10d.jpg',
+    name: '达尔优（dareu）DK100 87键游戏机械键盘 黑色 青轴 绝地求生吃鸡键盘',
+    amount: 99
+  }, {
+    id: 3,
+    img: 'https://img10.360buyimg.com/n4/jfs/t15253/142/2186086528/265300/181150e3/5a7906c0Ne99b1b2d.jpg',
+    name: '任天堂（Nintendo） Switch 游戏机 掌机 ns 掌上游戏机便携 Switch NS 彩色港版',
+    amount: 2399
+  }]
 
   constructor(public navCtrl: NavController, private dataService: DataService) {
   }
@@ -32,7 +47,7 @@ export class HomePage {
   ngOnInit() {
     this.isLogin = this.dataService.isLogin
 
-    for ( let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
       this.appcenter.push({
         imgSrc: 'https://m.360buyimg.com/mobilecms/jfs/t15835/38/1839282685/18115/3bf919ae/5a607233N99313ba1.png',
         text: '京东超市'
@@ -59,6 +74,12 @@ export class HomePage {
 
   onLogin() {
     this.navCtrl.push(LoginPage)
+  }
+
+  openGoodsDetail(item) {
+    this.navCtrl.push(GoodsDetailPage, {
+      item: item
+    })
   }
 
 }

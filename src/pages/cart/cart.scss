@@ -11,85 +11,73 @@ $textRed: #e4393c;
     margin-bottom: 10px;
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
-    .top {
-      position: relative;
-      overflow: hidden;
-      min-height: 75px;
-      .left {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .center {
-        width: 75px;
-        height: 75px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        left: 31px;
-        img {
-          max-width: 100%;
-          max-height: 100%;
-        }
-      }
-      .right {
-        margin-left: 10px;
-        padding-left: 106px;
-        .name {
-          display: -webkit-box;
-          -webkit-box-orient: vertical;
-          -webkit-line-clamp: 2;
-          overflow: hidden;
-          margin-bottom: 10px;
-          font-weight: bold;
-        }
-        .sku {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          color: #666;
-        }
-      }
-    } 
-    .middle {
-      padding-left: 116px;
+    position: relative;
+    .left {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .center {
+      width: 75px;
+      height: 75px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      .amount {
-        color: $textRed;
+      position: absolute;
+      left: 31px;
+      top: 50%;
+      transform: translateY(-50%);
+      img {
+        max-width: 100%;
+        max-height: 100%;
       }
-      .num-and-more {
-        color: $textGray;
+    }
+    .right {
+      margin-left: 116px;
+      .name {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      .middle {
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        a {
-          display: inline-block;
-          width: 30px;
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          font-size: 2em;
+        margin-bottom: 10px;
+        .amount {
+          color: $textRed;
+        }
+        .num-and-more {
           color: $textGray;
-        }
-        input {
-          width: 3em;
-          height: 30px;
-          border: none;
-          outline: none;
-          text-align: center;
+          display: flex;
+          align-items: center;
+          a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 2em;
+            color: $textGray;
+          }
+          input {
+            width: 3em;
+            height: 30px;
+            border: none;
+            outline: none;
+            text-align: center;
+          }
         }
       }
-    } 
-    .bottom {
-      text-align: right;
-      font-size: 12px;
-      a {
+      .del-btn {
+        display: block;
         color: $textGray;
-        padding: 0 10px;
+        text-align: right;
       }
-    }  
+    }
   }
 }
 
