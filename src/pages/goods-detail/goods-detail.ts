@@ -16,6 +16,8 @@ import { DataService } from '../../app/data.service';
 export class GoodsDetailPage {
   item = this.navParams.get('item')
   count = 1
+  isDisabled = false
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
@@ -42,7 +44,8 @@ export class GoodsDetailPage {
   }
 
   addToCart() {
-    
+
+    this.isDisabled = true
     this.item.count = this.count
     this.item.isChecked = true
     this.dataService.addToCart(this.item).subscribe(data => {
@@ -51,8 +54,16 @@ export class GoodsDetailPage {
         duration: 1000,
         position: 'middle'
       }).present()
+      this.isDisabled = false
+      this.navCtrl.pop()
+    }, err => {
+      this.toastCtrl.create({
+        message: '添加到购物车失败',
+        duration: 1000,
+        position: 'middle'
+      }).present()
+      this.isDisabled = false
     })
-    this.navCtrl.pop()
   }
 
 }

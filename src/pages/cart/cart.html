@@ -5,6 +5,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngIf="isEmpty">
+    <ion-card-content>
+      购物车为空
+    </ion-card-content>
+  </ion-card>
   <div class="goods-list">
     <div class="goods" *ngFor="let item of goods">
       <div class="left">

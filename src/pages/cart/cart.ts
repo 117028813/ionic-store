@@ -10,6 +10,7 @@ export class CartPage {
 
   goods
   isCheckedAll
+  isEmpty = false
   totalAmount = 0
   totalCount = 0
 
@@ -25,12 +26,24 @@ export class CartPage {
       this.isCheckedAll = this.goods.every((val, index, arr) => {
         return val.isChecked
       })
+    }, err => {
+      loading.dismiss()
+      this.toastCtrl.create({
+        message: '请求数据失败',
+        duration: 1000,
+        position: 'middle'
+      }).present()
     })
   }
 
   ngDoCheck() {
     if (this.totalAmount < 0) {
       this.totalAmount = 0
+    }
+    if (this.goods && this.goods.length === 0) {
+      this.isEmpty = true
+    } else {
+      this.isEmpty = false
     }
   }
 

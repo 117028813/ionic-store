@@ -26,6 +26,6 @@
     </div>
   </div>
   
-  <button ion-button block color="danger" (click)="addToCart()">加入购物车</button>
+  <button ion-button block color="danger" (click)="addToCart()" [disabled]="isDisabled">加入购物车</button>
 
 </ion-content>
